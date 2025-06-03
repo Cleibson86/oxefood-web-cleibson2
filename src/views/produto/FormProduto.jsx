@@ -18,7 +18,7 @@ export default function FormProduto() {
   useEffect(() => {
     if (state != null && state.id != null) {
       axios
-        .get("http://localhost:8080/api/produto/" + state.id)
+        .get("http://localhost:3000/api/produto/" + state.id)
         .then((response) => {
           setIdProduto(response.data.id);
           setTitulo(response.data.titulo);
@@ -44,7 +44,7 @@ export default function FormProduto() {
     if (idProduto != null) {
       //Alteração:
       axios
-        .put("http://localhost:8080/api/produto/" + idProduto, produtoRequest)
+        .put("http://localhost:3000/api/produto/" + idProduto, produtoRequest)
         .then((response) => {
           console.log("Produto alterado com sucesso.");
         })
@@ -54,7 +54,7 @@ export default function FormProduto() {
     } else {
       //Cadastro:
       axios
-        .post("http://localhost:8080/api/produto", produtoRequest)
+        .post("http://localhost:3000/api/produto", produtoRequest)
         .then((response) => {
           console.log("Produto cadastrado com sucesso.");
         })

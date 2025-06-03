@@ -27,7 +27,7 @@ export default function FormEntregador() {
   useEffect(() => {
     if (state != null && state.id != null) {
       axios
-        .get("http://localhost:8080/api/entregador/" + state.id)
+        .get("http://localhost:3000/api/entregador/" + state.id)
         .then((response) => {
           setIdEntregador(response.data.id)
           setNome(response.data.nome);
@@ -72,7 +72,7 @@ export default function FormEntregador() {
       //Alteração:
       axios
         .put(
-          "http://localhost:8080/api/entregador/" + idEntregador,
+          "http://localhost:3000/api/entregador/" + idEntregador,
           entregadorRequest
         )
         .then((response) => {
@@ -84,7 +84,7 @@ export default function FormEntregador() {
     } else {
       //Cadastro:
       axios
-        .post("http://localhost:8080/api/entregador", entregadorRequest)
+        .post("http://localhost:3000/api/entregador", entregadorRequest)
         .then((response) => {
           console.log("Entregador cadastrado com sucesso.");
         })
@@ -94,7 +94,7 @@ export default function FormEntregador() {
     }
 
     axios
-      .post("http://localhost:8080/api/entregador", entregadorRequest)
+      .post("http://localhost:3000/api/entregador", entregadorRequest)
       .then((response) => {
         console.log("Entregador cadastrado com sucesso.");
       })

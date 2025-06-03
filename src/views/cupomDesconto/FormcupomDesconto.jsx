@@ -5,21 +5,21 @@ import { Link, useLocation } from "react-router-dom";
 import { Button, Container, Divider, Form, Icon } from "semantic-ui-react";
 import MenuSistema from "../../MenuSistema";
 
-export default function FormCliente() {
+export default function FormCupomDesconto() {
   const [nome, setNome] = useState();
   const [cpf, setCpf] = useState();
   const [dataNascimento, setDataNascimento] = useState();
   const [foneCelular, setFoneCelular] = useState();
   const [foneFixo, setFoneFixo] = useState();
   const { state } = useLocation();
-  const [idCliente, setIdCliente] = useState();
+  const [idcupomDesconto, setIdCupomDesconto] = useState();
 
   
   useEffect(() => {
     if (state != null && state.id != null) {
-        axios.get("http://localhost:3000/api/cliente/" + state.id)
+        axios.get("http://localhost:3000/api/cupomDesconto/" + state.id)
 .then((response) => {
-                       setIdCliente(response.data.id)
+                       setIdCupomDesconto(response.data.id)
                        setNome(response.data.nome)
                        setCpf(response.data.cpf)
                        setDataNascimento(formatarData(response.data.dataNascimento))
@@ -30,7 +30,7 @@ export default function FormCliente() {
 }, [state])
 
   function salvar() {
-    let clienteRequest = {
+    let cupomDescontoRequest = {
       nome: nome,
       cpf: cpf,
       dataNascimento: dataNascimento,
@@ -38,14 +38,14 @@ export default function FormCliente() {
       foneFixo: foneFixo,
     };
 
-    if (idCliente != null) { //Alteração:
-      axios.put("http://localhost:3000/api/cliente/" + idCliente, clienteRequest)
-      .then((response) => { console.log('Cliente alterado com sucesso.') })
-      .catch((error) => { console.log('Erro ao alter um cliente.') })
+    if (idcupomDesconto != null) { //Alteração:
+      axios.put("http://localhost:3000/api/cupomDesconto/" + idcupomDesconto, cupomDescontoRequest)
+      .then((response) => { console.log('Cupom alterado com sucesso.') })
+      .catch((error) => { console.log('Erro ao alter um cupom.') })
   } else { //Cadastro:
-      axios.post("http://localhost:3000/api/cliente", clienteRequest)
-      .then((response) => { console.log('Cliente cadastrado com sucesso.') })
-      .catch((error) => { console.log('Erro ao incluir o cliente.') })
+      axios.post("http://localhost:3000/api/cupomDesconto", cupomDescontoRequest)
+      .then((response) => { console.log('Cupom cadastrado com sucesso.') })
+      .catch((error) => { console.log('Erro ao incluir o cupom.') })
   }
 
   }
@@ -62,23 +62,23 @@ export default function FormCliente() {
 
   return (
     <div>
-      <MenuSistema tela={"cliente"} />
+      <MenuSistema tela={"cupomDesconto"} />
 
       <div style={{ marginTop: "3%" }}>
         <Container textAlign="justified">
 
-        { idCliente === undefined &&
-    <h2> <span style={{color: 'darkgray'}}> Cliente &nbsp;<Icon name='angle double right' size="small" /> </span> Cadastro</h2>
+        { idcupomDesconto === undefined &&
+    <h2> <span style={{color: 'darkgray'}}> CupomDesconto &nbsp;<Icon name='angle double right' size="small" /> </span> Cadastro</h2>
 }
-{ idCliente != undefined &&
-    <h2> <span style={{color: 'darkgray'}}> Cliente &nbsp;<Icon name='angle double right' size="small" /> </span> Alteração</h2>
+{ idcupomDesconto != undefined &&
+    <h2> <span style={{color: 'darkgray'}}> CupomDesconto &nbsp;<Icon name='angle double right' size="small" /> </span> Alteração</h2>
 }
 
           <h2>
             {" "}
             <span style={{ color: "darkgray" }}>
               {" "}
-              Cliente &nbsp;
+              CupomDesconto &nbsp;
               <Icon name="angle double right" size="small" />{" "}
             </span>{" "}
             Cadastro{" "}
@@ -138,7 +138,7 @@ export default function FormCliente() {
             </Form>
 
             <div style={{ marginTop: "4%" }}>
-              <Link to={"/list-cliente"}>
+              <Link to={"/list-cupomDesconto"}>
                 <Button
                   inverted
                   circular

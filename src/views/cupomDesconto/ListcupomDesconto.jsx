@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Button, Container, Divider, Header, Icon, Modal, Table } from 'semantic-ui-react';
 import MenuSistema from '../../MenuSistema';
 
-export default function ListCliente () {
+export default function ListcupomDesconto () {
 
    const [lista, setLista] = useState([]);
    const [openModal, setOpenModal] = useState(false);
@@ -21,7 +21,7 @@ export default function ListCliente () {
 
    function carregarLista() {
 
-       axios.get("http://localhost:3000/api/cliente")
+       axios.get("http://localhost:3000/api/cupomDesconto")
        .then((response) => {
            setLista(response.data)
        })
@@ -38,30 +38,30 @@ export default function ListCliente () {
 
 async function remover() {
 
-    await axios.delete('http://localhost:3000/api/cliente/' + idRemover)
+    await axios.delete('http://localhost:3000/api/cupomDesconto/' + idRemover)
     .then((response) => {
 
-        console.log('Cliente removido com sucesso.')
+        console.log('Cupom removido com sucesso.')
 
-        axios.get("http://localhost:3000/api/cliente")
+        axios.get("http://localhost:3000/api/cupomDesconto")
         .then((response) => {
             setLista(response.data)
         })
     })
     .catch((error) => {
-        console.log('Erro ao remover um cliente.')
+        console.log('Erro ao remover um cupom.')
     })
     setOpenModal(false)
 }
 
 return(
     <div>
-        <MenuSistema tela={'cliente'} />
+        <MenuSistema tela={'cupomDesconto'} />
         <div style={{marginTop: '3%'}}>
 
             <Container textAlign='justified' >
 
-                <h2> Cliente </h2>
+                <h2> CupomDesconto </h2>
                 <Divider />
 
                 <div style={{marginTop: '4%'}}>
@@ -72,7 +72,7 @@ return(
                         icon='clipboard outline'
                         floated='right'
                         as={Link}
-                        to='/form-cliente'
+                        to='/form-cupomDesconto'
                     />
 <br/><br/><br/>
                   
@@ -91,32 +91,32 @@ return(
                  
                       <Table.Body>
 
-                          { lista.map(cliente => (
+                          { lista.map(cupomDesconto => (
 
-                              <Table.Row key={cliente.id}>
-                                  <Table.Cell>{cliente.nome}</Table.Cell>
-                                  <Table.Cell>{cliente.cpf}</Table.Cell>
-                                  <Table.Cell>{formatarData(cliente.dataNascimento)}</Table.Cell>
-                                  <Table.Cell>{cliente.foneCelular}</Table.Cell>
-                                  <Table.Cell>{cliente.foneFixo}</Table.Cell>
+                              <Table.Row key={cupomDesconto.id}>
+                                  <Table.Cell>{cupomDesconto.nome}</Table.Cell>
+                                  <Table.Cell>{cupomDesconto.cpf}</Table.Cell>
+                                  <Table.Cell>{formatarData(cupomDesconto.dataNascimento)}</Table.Cell>
+                                  <Table.Cell>{cupomDesconto.foneCelular}</Table.Cell>
+                                  <Table.Cell>{cupomDesconto.foneFixo}</Table.Cell>
                                   <Table.Cell textAlign='center'>
 
                                   <Button
          inverted
          circular
          color='green'
-         title='Clique aqui para editar os dados deste cliente'
+         title='Clique aqui para editar os dados deste cupom'
          icon>
-            <Link to="/form-cliente" state={{id: cliente.id}} style={{color: 'green'}}> <Icon name='edit' /> </Link>
+            <Link to="/form-cupomDesconto" state={{id: cupomDesconto.id}} style={{color: 'green'}}> <Icon name='edit' /> </Link>
       </Button>
  &nbsp;
                                       <Button
                                                inverted
                                                circular
                                                color='red'
-                                               title='Clique aqui para remover este cliente'
+                                               title='Clique aqui para remover este cupomDesconto'
                                                icon
-                                               onClick={e => confirmaRemover(cliente.id)}>
+                                               onClick={e => confirmaRemover(cupomDesconto.id)}>
                                                    <Icon name='trash' />
                                                    
                                            </Button>
