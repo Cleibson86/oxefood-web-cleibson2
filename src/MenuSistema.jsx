@@ -12,27 +12,28 @@ export default function MenuSistema(props) {
           content="Cliente"
           active={props.tela === "cliente"}
           as={Link}
-          to="/list-cliente"
+          to="/form-cliente"
+
         />
         <Menu.Item
           content="Produto"
           active={props.tela === "produto"}
           as={Link}
-          to='/list-produto'
+          to='/form-produto'
         />
 
         <Menu.Item
           content="Entregador"
           active={props.tela === "entregador"}
           as={Link}
-          to="/list-entregador"
+          to="/form-entregador"
         />
 
         <Menu.Item
           content="cupomDesconto"
           active={props.tela === "cupomDesconto"}
           as={Link}
-          to="/list-cupomDesconto"
+          to="/form-cupomDesconto"
         />
 
 
