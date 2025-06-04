@@ -17,7 +17,7 @@ export default function FormCliente() {
   
   useEffect(() => {
     if (state != null && state.id != null) {
-        axios.get("http://localhost:3000/api/cliente/" + state.id)
+        axios.get("http://localhost:8080/api/cliente/" + state.id)
 .then((response) => {
                        setIdCliente(response.data.id)
                        setNome(response.data.nome)
@@ -39,11 +39,11 @@ export default function FormCliente() {
     };
 
     if (idCliente != null) { //Alteração:
-      axios.put("http://localhost:3000/api/cliente/" + idCliente, clienteRequest)
+      axios.put("http://localhost:8080/api/cliente/" + idCliente, clienteRequest)
       .then((response) => { console.log('Cliente alterado com sucesso.') })
       .catch((error) => { console.log('Erro ao alter um cliente.') })
   } else { //Cadastro:
-      axios.post("http://localhost:3000/api/cliente", clienteRequest)
+      axios.post("http://localhost:8080/api/cliente", clienteRequest)
       .then((response) => { console.log('Cliente cadastrado com sucesso.') })
       .catch((error) => { console.log('Erro ao incluir o cliente.') })
   }

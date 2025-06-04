@@ -17,7 +17,7 @@ export default function FormCupomDesconto() {
   
   useEffect(() => {
     if (state != null && state.id != null) {
-        axios.get("http://localhost:3000/api/cupomDesconto/" + state.id)
+        axios.get("http://localhost:8080/api/cupomDesconto/" + state.id)
 .then((response) => {
                        setIdCupomDesconto(response.data.id)
                        setNome(response.data.nome)
@@ -39,11 +39,11 @@ export default function FormCupomDesconto() {
     };
 
     if (idcupomDesconto != null) { //Alteração:
-      axios.put("http://localhost:3000/api/cupomDesconto/" + idcupomDesconto, cupomDescontoRequest)
+      axios.put("http://localhost:8080/api/cupomDesconto/" + idcupomDesconto, cupomDescontoRequest)
       .then((response) => { console.log('Cupom alterado com sucesso.') })
       .catch((error) => { console.log('Erro ao alter um cupom.') })
   } else { //Cadastro:
-      axios.post("http://localhost:3000/api/cupomDesconto", cupomDescontoRequest)
+      axios.post("http://localhost:8080/api/cupomDesconto", cupomDescontoRequest)
       .then((response) => { console.log('Cupom cadastrado com sucesso.') })
       .catch((error) => { console.log('Erro ao incluir o cupom.') })
   }

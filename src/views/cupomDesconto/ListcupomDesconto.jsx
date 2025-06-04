@@ -21,7 +21,7 @@ export default function ListcupomDesconto () {
 
    function carregarLista() {
 
-       axios.get("http://localhost:3000/api/cupomDesconto")
+       axios.get("http://localhost:8080/api/cupomDesconto")
        .then((response) => {
            setLista(response.data)
        })
@@ -38,12 +38,12 @@ export default function ListcupomDesconto () {
 
 async function remover() {
 
-    await axios.delete('http://localhost:3000/api/cupomDesconto/' + idRemover)
+    await axios.delete('http://localhost:8080/api/cupomDesconto/' + idRemover)
     .then((response) => {
 
         console.log('Cupom removido com sucesso.')
 
-        axios.get("http://localhost:3000/api/cupomDesconto")
+        axios.get("http://localhost:8080/api/cupomDesconto")
         .then((response) => {
             setLista(response.data)
         })
